@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class ResponseSuccess extends APCResponse {
 
-    private HashSet<String> crackedPasswords = new HashSet();
+    private HashSet<String> crackedPasswords = new HashSet<>();
 
     public ResponseSuccess() {
         super(ResponseType.APC_RESPONSE_SUCCESS);

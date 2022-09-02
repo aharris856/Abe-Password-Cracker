@@ -13,7 +13,7 @@ public class APCProgram {
 
         } else {
 
-            runApplicationWithArgs(String.join("", args));
+            runApplicationWithArgs(String.join(" ", args));
         }
 
     }

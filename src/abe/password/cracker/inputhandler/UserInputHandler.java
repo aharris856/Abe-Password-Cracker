@@ -59,15 +59,15 @@ public class UserInputHandler {
 
                 if (currentInput.equalsIgnoreCase(HASHED_PASS_FILE_CMD)) {
 
-                    hashedPasswordFile = userInputArr[i+1];
+                    hashedPasswordFile = determineFileName(userInputArr, i+1);
 
                 } else if (currentInput.equalsIgnoreCase(DICTIONARY_FILE_CMD)) {
 
-                    dictionaryFile = userInputArr[i+1];
+                    dictionaryFile = determineFileName(userInputArr, i+1);
 
                 } else if (currentInput.equalsIgnoreCase(COMMON_PASS_FILE_CMD)) {
 
-                    commonPasswordsFile = userInputArr[i+1];
+                    commonPasswordsFile = determineFileName(userInputArr, i+1);
 
                 } else if (currentInput.equalsIgnoreCase(HASH_TYPE)) {
 
@@ -136,7 +136,7 @@ public class UserInputHandler {
                 break;
             }
 
-            for(AttackType attackType : attackTypes) {
+            for(AttackType attackType : validAttackTypes) {
                 if(attackType.toString().equalsIgnoreCase(potentialAttackType)) {
                     attackTypes.add(attackType);
                 }
@@ -144,6 +144,20 @@ public class UserInputHandler {
         }
 
         return attackTypes;
+    }
+
+    private String determineFileName(String[] arr, int startIndex) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(int i = startIndex; i < arr.length && !isValidCommand(arr[i]); i++) {
+            stringBuilder.append(arr[i]);
+            if(i+1 < arr.length && !isValidCommand(arr[i+1])) {
+                stringBuilder.append(' ');
+            }
+        }
+
+        return stringBuilder.toString();
     }
 
     private boolean isValidCommand(String str) {
