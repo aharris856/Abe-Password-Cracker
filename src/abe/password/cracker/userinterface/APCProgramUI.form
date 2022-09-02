@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="abe.password.cracker.userinterface.APCProgramUI">
+  <grid id="27dc6" binding="apcApplicationPanel" layout-manager="GridLayoutManager" row-count="6" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="903" height="548"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="ef308" class="javax.swing.JLabel" binding="hashedPasswordFileLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Hashed Passwords File :"/>
+        </properties>
+      </component>
+      <component id="a495a" class="javax.swing.JLabel" binding="dictionaryFileLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Dictionary File :"/>
+        </properties>
+      </component>
+      <component id="eb117" class="javax.swing.JLabel" binding="commonPasswordsFileLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Common Passwords File :"/>
+        </properties>
+      </component>
+      <component id="d447c" class="javax.swing.JLabel" binding="hashingAlgorithmLabel">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Hashing Algorithm :"/>
+        </properties>
+      </component>
+      <component id="718f1" class="javax.swing.JLabel" binding="attackMethodsLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Attack Methods :"/>
+        </properties>
+      </component>
+      <component id="39ab2" class="javax.swing.JTextField" binding="hashedPasswordFileTextField">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="c83af" class="javax.swing.JTextField" binding="dictionaryFileTextField">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="adb7e" class="javax.swing.JTextField" binding="commonPasswordsFileTextField">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="ef38e" class="javax.swing.JRadioButton" binding="md5RadioButton">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="MD5"/>
+        </properties>
+      </component>
+      <component id="2ba8a" class="javax.swing.JRadioButton" binding="sha1RadioButton">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="SHA-1"/>
+        </properties>
+      </component>
+      <component id="1be6e" class="javax.swing.JRadioButton" binding="sha256RadioButton">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="SHA-256"/>
+        </properties>
+      </component>
+      <component id="2acb4" class="javax.swing.JCheckBox" binding="bruteForceAttackCheckBox">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Brute Force Attack"/>
+        </properties>
+      </component>
+      <component id="a0573" class="javax.swing.JCheckBox" binding="dictionaryAttackCheckBox">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Dictionary Attack"/>
+        </properties>
+      </component>
+      <component id="ae68c" class="javax.swing.JCheckBox" binding="commonPasswordsAttackCheckBox" default-binding="true">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Common Passwords Attack"/>
+        </properties>
+      </component>
+      <component id="7887c" class="javax.swing.JButton" binding="attackButton">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="LAUNCH ATTACK!"/>
+        </properties>
+      </component>
+      <component id="a1905" class="javax.swing.JLabel" binding="responseLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Please enter information to begin attack"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
