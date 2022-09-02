@@ -42,12 +42,13 @@ public class APCInputInstructions {
             return false;
         }
 
-        HashSet<AttackType> attackTypesAPCII = new HashSet(apcII.getAttackTypes());
         for(AttackType attackType : attackTypes) {
-            attackTypes.remove(attackType);
+            if(!apcII.getAttackTypes().contains(attackType)) {
+                return false;
+            }
         }
 
-        return attackTypesAPCII.size() == 0;
+        return true;
     }
 
     // end testing used methods --------------------------------------------------
