@@ -5,12 +5,12 @@ import abe.password.cracker.constants.OutputType;
 import abe.password.cracker.hasher.APCHasher;
 import abe.password.cracker.inputhandler.APCInputInstructions;
 import abe.password.cracker.response.ResponseSuccess;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.HashSet;
-import java.util.Iterator;
 
 public class CommonPasswordsAttack implements APCAttack {
 

@@ -5,11 +5,11 @@ import abe.password.cracker.constants.OutputType;
 import abe.password.cracker.hasher.APCHasher;
 import abe.password.cracker.inputhandler.APCInputInstructions;
 import abe.password.cracker.response.ResponseSuccess;
+
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 
 public class BruteForceAttack implements APCAttack {

@@ -4,8 +4,8 @@ import abe.password.cracker.constants.AttackType;
 import abe.password.cracker.constants.Command;
 import abe.password.cracker.constants.HashType;
 import abe.password.cracker.constants.OutputType;
+
 import java.util.HashSet;
-import java.util.Iterator;
 
 public class UserInputHandler {
     private HashSet<String> validCommands = new HashSet<>();

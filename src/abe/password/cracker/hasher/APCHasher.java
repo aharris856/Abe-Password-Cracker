@@ -1,6 +1,7 @@
 package abe.password.cracker.hasher;
 
 import abe.password.cracker.constants.HashType;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

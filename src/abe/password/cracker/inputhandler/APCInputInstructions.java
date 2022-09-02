@@ -3,8 +3,8 @@ package abe.password.cracker.inputhandler;
 import abe.password.cracker.constants.AttackType;
 import abe.password.cracker.constants.HashType;
 import abe.password.cracker.constants.OutputType;
+
 import java.util.HashSet;
-import java.util.Iterator;
 
 public class APCInputInstructions {
 

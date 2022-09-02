@@ -1,6 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
 package abe.password.cracker;
 
 import abe.password.cracker.controller.APCController;

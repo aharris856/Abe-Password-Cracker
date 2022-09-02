@@ -1,8 +1,8 @@
 package abe.password.cracker.response;
 
 import abe.password.cracker.constants.ResponseType;
+
 import java.util.HashSet;
-import java.util.Iterator;
 
 public class ResponseSuccess extends APCResponse {
 

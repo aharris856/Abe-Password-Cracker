@@ -5,9 +5,9 @@ import abe.password.cracker.constants.HashType;
 import abe.password.cracker.constants.OutputType;
 import abe.password.cracker.controller.APCController;
 import abe.password.cracker.inputhandler.APCInputInstructions;
-import java.util.HashSet;
-import java.util.Iterator;
+
 import javax.swing.*;
+import java.util.HashSet;
 
 public class APCProgramUI extends JFrame {
     private final APCController controller = new APCController();

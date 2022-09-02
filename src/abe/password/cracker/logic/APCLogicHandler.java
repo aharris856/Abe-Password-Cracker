@@ -6,6 +6,7 @@ import abe.password.cracker.attack.CommonPasswordsAttack;
 import abe.password.cracker.attack.DictionaryAttack;
 import abe.password.cracker.constants.AttackType;
 import abe.password.cracker.inputhandler.APCInputInstructions;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
