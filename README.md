@@ -33,5 +33,5 @@
             |   SHA-256   |      brute_force      |               |
             |_____________|_______________________|_______________|
     
-    The path in which -ot file will place responses is in: APPLICATION_DIRECTORY\APC_Responses\
+    The path in which "-ot file" will place responses is in: APPLICATION_DIRECTORY\APC_Responses\
     
