@@ -12,6 +12,10 @@ public class ResponseSuccess extends APCResponse {
         super(ResponseType.APC_RESPONSE_SUCCESS);
     }
 
+    public HashSet<String> getCrackedPasswords() {
+        return crackedPasswords;
+    }
+
     public void addCrackedPassword(String crackedPassword) {
         crackedPasswords.add(crackedPassword);
     }

@@ -38,7 +38,7 @@ public abstract class APCResponse {
         pw.close();
     }
 
-    public String getTimeStamp() {
+    private String getTimeStamp() {
         return ( new SimpleDateFormat("HH.mm.ss-yyyy_MM_dd") ).format(new Date());
     }
 }

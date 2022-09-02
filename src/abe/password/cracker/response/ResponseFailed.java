@@ -14,8 +14,12 @@ public class ResponseFailed extends APCResponse {
         this.errorMessage = errorMessage;
     }
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
     public String toString() {
-        return "Response : " + responseType + " {\n" +
+        return "Response : " + responseType.toString() + " {\n" +
                 "\tFailure Message {\n" +
                 "\t\t" + errorMessage + "\n" +
                 "\t}\n" +
