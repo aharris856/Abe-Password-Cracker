@@ -38,7 +38,7 @@ public class APCProgramUI extends JFrame {
 
         setContentPane(apcApplicationPanel);
         setTitle("APC Application");
-        setSize(750, 400);
+        setSize(750, 450);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
