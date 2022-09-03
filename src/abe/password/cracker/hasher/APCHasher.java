@@ -10,6 +10,10 @@ public class APCHasher {
 
     public String getHash(String str, HashType hashType) {
 
+        if(str == null || hashType == null) {
+            return null;
+        }
+
         switch (hashType) {
             case MD5:
                 return getHash(str, "MD5");
@@ -23,6 +27,7 @@ public class APCHasher {
     }
 
     private String getHash(String str, String hashAlgorithm) {
+
         try {
 
             MessageDigest messageDigest = MessageDigest.getInstance(hashAlgorithm);
