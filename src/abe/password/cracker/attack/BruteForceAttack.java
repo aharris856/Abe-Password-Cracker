@@ -29,6 +29,8 @@ public class BruteForceAttack implements APCAttack {
         }
 
         createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType(), "Brute_Force_Attack_Final_Response");
+
+        System.out.println("Brute force attack complete.");
     }
 
     private HashSet<String> executeBruteForceAttack(HashSet<String> passwordsToCrack, HashType hashType, OutputType outputType) {
