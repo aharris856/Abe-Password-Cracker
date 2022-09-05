@@ -13,8 +13,6 @@ import java.text.MessageFormat;
 import java.util.HashSet;
 
 public class DictionaryAttack implements APCAttack {
-    public DictionaryAttack() {
-    }
 
     public void attack(APCInputInstructions apcInputInstructions, HashSet<String> passwordsToCrack) {
 
@@ -28,6 +26,8 @@ public class DictionaryAttack implements APCAttack {
         }
 
         createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType());
+
+        System.out.println("Dictionary attack complete.");
     }
 
     private HashSet<String> executeDictionaryAttack(HashSet<String> passwordsToCrack, String dictionaryFileName, HashType hashType) {

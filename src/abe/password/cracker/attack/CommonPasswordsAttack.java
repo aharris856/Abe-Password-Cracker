@@ -26,6 +26,8 @@ public class CommonPasswordsAttack implements APCAttack {
         }
 
         createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType());
+
+        System.out.println("Common passwords attack complete.");
     }
 
     private HashSet<String> executeCommonPasswordsAttack(HashSet<String> passwordsToCrack, String commonPasswordsFileName, HashType hashType) {
