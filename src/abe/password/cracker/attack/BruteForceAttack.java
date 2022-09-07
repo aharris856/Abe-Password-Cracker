@@ -17,7 +17,7 @@ public class BruteForceAttack implements APCAttack {
 
     private String defaultResponseFileName = "Brute_Force_Attack_Response";
 
-    private final char minChar = ' ';
+    private final char minChar = '!';
     private final char maxChar = '~';
 
     public void attack(APCInputInstructions apcInputInstructions, HashSet<String> passwordsToCrack) {
@@ -25,11 +25,6 @@ public class BruteForceAttack implements APCAttack {
         System.out.println("Attempting brute force attack");
 
         HashSet<String> crackedPasswords = executeBruteForceAttack(passwordsToCrack, apcInputInstructions.getHashType(), apcInputInstructions.getOutputType());
-
-        if (crackedPasswords == null) {
-            System.out.println("Failed to attempt brute force attack.");
-            return;
-        }
 
         createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType());
 
@@ -82,12 +77,14 @@ public class BruteForceAttack implements APCAttack {
             }
 
             for(int i = 0; i < charArr.length; i++) {
+
                 if(charArr[i] < maxChar) {
                     charArr[i]++;
                     break;
                 }
 
                 charArr[i] = minChar;
+                
                 if(index == i) {
                     index++;
                 }

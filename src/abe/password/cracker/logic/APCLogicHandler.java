@@ -1,10 +1,8 @@
 package abe.password.cracker.logic;
 
-import abe.password.cracker.attack.APCAttack;
-import abe.password.cracker.attack.BruteForceAttack;
-import abe.password.cracker.attack.CommonPasswordsAttack;
-import abe.password.cracker.attack.DictionaryAttack;
+import abe.password.cracker.attack.*;
 import abe.password.cracker.constants.AttackType;
+import abe.password.cracker.hasher.APCHasher;
 import abe.password.cracker.inputhandler.APCInputInstructions;
 
 import java.io.BufferedReader;
@@ -34,6 +32,10 @@ public class APCLogicHandler {
 
         if (attackTypes.contains(AttackType.COMMON_PASSWORDS)) {
             executeCommonPasswordsAttack(inputInstructions, passwordsToCrack);
+        }
+
+        if(attackTypes.contains(AttackType.HYBRID_DICTIONARY)) {
+            executeHybridDictionaryAttack(inputInstructions, passwordsToCrack);
         }
 
         if (attackTypes.contains(AttackType.BRUTE_FORCE)) {
@@ -80,6 +82,11 @@ public class APCLogicHandler {
     private void executeCommonPasswordsAttack(APCInputInstructions inputInstructions, HashSet<String> passwordsToCrack) {
         CommonPasswordsAttack commonPasswordsAttack = new CommonPasswordsAttack();
         executeAttack(commonPasswordsAttack, inputInstructions, passwordsToCrack);
+    }
+
+    private void executeHybridDictionaryAttack(APCInputInstructions inputInstructions, HashSet<String> passwordsToCrack) {
+        HybridDictionaryAttack hybridDictionaryAttack = new HybridDictionaryAttack();
+        executeAttack(hybridDictionaryAttack, inputInstructions, passwordsToCrack);
     }
 
     private void executeBruteForceAttack(APCInputInstructions inputInstructions, HashSet<String> passwordsToCrack) {

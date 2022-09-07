@@ -31,6 +31,7 @@
             |     MD5     |    common_passwords   |     sysout    |
             |    SHA-1    |      dictionary       |      file     |
             |   SHA-256   |      brute_force      |               |
+            |             |   hybrid_dictionary   |               |
             |_____________|_______________________|_______________|
     
     The path in which "-ot file" will place responses is in: APPLICATION_DIRECTORY\APC_Responses\
