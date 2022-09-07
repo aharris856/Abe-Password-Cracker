@@ -4,6 +4,7 @@ import abe.password.cracker.constants.HashType;
 import abe.password.cracker.constants.OutputType;
 import abe.password.cracker.hasher.APCHasher;
 import abe.password.cracker.inputhandler.APCInputInstructions;
+import abe.password.cracker.response.ResponseFailed;
 import abe.password.cracker.response.ResponseSuccess;
 
 import java.io.IOException;
@@ -13,6 +14,8 @@ import java.util.HashSet;
 import java.util.List;
 
 public class BruteForceAttack implements APCAttack {
+
+    private String defaultResponseFileName = "Brute_Force_Attack_Response";
 
     private final char minChar = ' ';
     private final char maxChar = '~';
@@ -28,7 +31,7 @@ public class BruteForceAttack implements APCAttack {
             return;
         }
 
-        createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType(), "Brute_Force_Attack_Final_Response");
+        createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType());
 
         System.out.println("Brute force attack complete.");
     }
@@ -75,7 +78,7 @@ public class BruteForceAttack implements APCAttack {
             if(passwordsToCrack.contains(hashedPermutation)) {
                 String crackedPassword = MessageFormat.format("Password : \"{0}\" - Hashed Password : \"{1}\"", permutation, hashedPermutation);
                 crackedPasswords.add(crackedPassword);
-                createAPCResponse( new HashSet(List.of(crackedPassword)), outputType, "Brute_Force_Attack_Single_Response");
+                createAPCResponseSuccess("Brute_Force_Attack_Single_Response", new HashSet(List.of(crackedPassword)), outputType);
             }
 
             for(int i = 0; i < charArr.length; i++) {
@@ -94,7 +97,17 @@ public class BruteForceAttack implements APCAttack {
         return crackedPasswords;
     }
 
-    private void createAPCResponse(HashSet<String> crackedPasswords, OutputType outputType, String fileName) {
+    private void createAPCResponse(HashSet<String> crackedPasswords, OutputType outputType) {
+
+        if(crackedPasswords == null) {
+            createAPCResponseFailed(defaultResponseFileName, "Failed to crack passwords.", outputType);
+            return;
+        }
+
+        createAPCResponseSuccess(defaultResponseFileName, crackedPasswords, outputType);
+    }
+
+    private void createAPCResponseSuccess(String fileName, HashSet<String> crackedPasswords, OutputType outputType) {
 
         ResponseSuccess response = new ResponseSuccess();
 
@@ -110,7 +123,28 @@ public class BruteForceAttack implements APCAttack {
                 return;
 
             } catch (IOException e) {
-                System.out.println(e.toString());
+                System.out.println("Failed to write dictionary attack response to file. printing");
+            }
+        }
+
+        System.out.println(response);
+    }
+
+    private void createAPCResponseFailed(String fileName, String errorMessage, OutputType outputType) {
+
+        ResponseFailed response = new ResponseFailed();
+
+        response.setErrorMessage(errorMessage);
+
+        if (outputType == OutputType.FILE) {
+
+            try {
+
+                response.toFile(fileName);
+                return;
+
+            } catch (IOException e) {
+                System.out.println("Failed to write dictionary attack response to file. printing");
             }
         }
 

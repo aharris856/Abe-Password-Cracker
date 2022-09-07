@@ -66,7 +66,7 @@ public class APCLogicHandler {
             return hashedPasswords;
 
         } catch (IOException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
             return null;
         }
 

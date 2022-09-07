@@ -38,7 +38,7 @@ public class APCHasher {
             System.out.println("Error. Failed to determine hashing algorithm. : \"" + hashAlgorithm + "\" returning null.");
             return null;
         } catch (UnsupportedEncodingException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
             return null;
         }
     }
