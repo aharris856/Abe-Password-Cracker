@@ -4,6 +4,7 @@ import abe.password.cracker.constants.HashType;
 import abe.password.cracker.constants.OutputType;
 import abe.password.cracker.hasher.APCHasher;
 import abe.password.cracker.inputhandler.APCInputInstructions;
+import abe.password.cracker.response.ResponseFailed;
 import abe.password.cracker.response.ResponseSuccess;
 
 import java.io.BufferedReader;
@@ -13,6 +14,8 @@ import java.text.MessageFormat;
 import java.util.HashSet;
 
 public class CommonPasswordsAttack implements APCAttack {
+
+    private String responseFileName = "Common_Passwords_Attack_Response";
 
     public void attack(APCInputInstructions apcInputInstructions, HashSet<String> passwordsToCrack) {
 
@@ -53,12 +56,22 @@ public class CommonPasswordsAttack implements APCAttack {
             return crackedPasswords;
 
         } catch (IOException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
             return null;
         }
     }
 
     private void createAPCResponse(HashSet<String> crackedPasswords, OutputType outputType) {
+
+        if(crackedPasswords == null) {
+            createAPCResponseFailed("Failed to crack passwords.", outputType);
+            return;
+        }
+
+        createAPCResponseSuccess(crackedPasswords, outputType);
+    }
+
+    private void createAPCResponseSuccess(HashSet<String> crackedPasswords, OutputType outputType) {
 
         ResponseSuccess response = new ResponseSuccess();
 
@@ -70,11 +83,32 @@ public class CommonPasswordsAttack implements APCAttack {
 
             try {
 
-                response.toFile("Common_Passwords_Attack_Response");
+                response.toFile(responseFileName);
                 return;
 
             } catch (IOException e) {
-                System.out.println(e.toString());
+                System.out.println("Failed to write dictionary attack response to file. printing");
+            }
+        }
+
+        System.out.println(response);
+    }
+
+    private void createAPCResponseFailed(String errorMessage, OutputType outputType) {
+
+        ResponseFailed response = new ResponseFailed();
+
+        response.setErrorMessage(errorMessage);
+
+        if (outputType == OutputType.FILE) {
+
+            try {
+
+                response.toFile(responseFileName);
+                return;
+
+            } catch (IOException e) {
+                System.out.println("Failed to write dictionary attack response to file. printing");
             }
         }
 

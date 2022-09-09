@@ -20,6 +20,7 @@ public class APCProgramUI extends JFrame {
     private JCheckBox bruteForceAttackCheckBox;
     private JCheckBox dictionaryAttackCheckBox;
     private JCheckBox commonPasswordsAttackCheckBox;
+    private JCheckBox hybridDictionaryAttackCheckBox;
     private JLabel hashedPasswordFileLabel;
     private JLabel dictionaryFileLabel;
     private JLabel commonPasswordsFileLabel;
@@ -38,7 +39,7 @@ public class APCProgramUI extends JFrame {
 
         setContentPane(apcApplicationPanel);
         setTitle("APC Application");
-        setSize(750, 450);
+        setSize(850, 550);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
@@ -90,6 +91,10 @@ public class APCProgramUI extends JFrame {
 
         if (dictionaryAttackCheckBox.isSelected()) {
             attackTypes.add(AttackType.DICTIONARY);
+        }
+
+        if(hybridDictionaryAttackCheckBox.isSelected()) {
+            attackTypes.add(AttackType.HYBRID_DICTIONARY);
         }
 
         if (attackTypes.size() == 0) {
