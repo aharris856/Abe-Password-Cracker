@@ -48,8 +48,6 @@ public class HybridDictionaryAttack implements APCAttack {
     @Override
     public void attack(APCInputInstructions apcInputInstructions, HashSet<String> passwordsToCrack) {
 
-        long startTime = System.currentTimeMillis();
-
         System.out.println("Attempting hybrid dictionary attack.");
 
         Queue<String> dictionary = readDictionaryFile(apcInputInstructions.getDictionaryFile());
@@ -63,9 +61,6 @@ public class HybridDictionaryAttack implements APCAttack {
 
         createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType());
 
-        long endTime = System.currentTimeMillis();
-        double time = ( (double) (endTime - startTime) ) / 1000;
-        System.out.println("Hybrid Attack Time: "+time+" s");
     }
 
     private HashSet<String> executeHybridDictionaryAttack(HashSet<String> passwordsToCrack, Queue<String> dictionary, HashType hashType) {
