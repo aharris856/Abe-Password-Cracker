@@ -2,7 +2,6 @@ package abe.password.cracker.logic;
 
 import abe.password.cracker.attack.*;
 import abe.password.cracker.constants.AttackType;
-import abe.password.cracker.hasher.APCHasher;
 import abe.password.cracker.inputhandler.APCInputInstructions;
 
 import java.io.BufferedReader;

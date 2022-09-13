@@ -155,28 +155,6 @@
           <text value="Common Passwords Attack"/>
         </properties>
       </component>
-      <component id="7887c" class="javax.swing.JButton" binding="attackButton">
-        <constraints>
-          <grid row="5" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-7667712"/>
-          <font size="14" style="1"/>
-          <foreground color="-14606047"/>
-          <text value="LAUNCH ATTACK!"/>
-        </properties>
-      </component>
-      <component id="a1905" class="javax.swing.JLabel" binding="responseLabel">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-14605013"/>
-          <font size="12" style="1"/>
-          <foreground color="-2630944"/>
-          <text value="Please enter information to begin attack"/>
-        </properties>
-      </component>
       <component id="1be6e" class="javax.swing.JRadioButton" binding="sha256RadioButton">
         <constraints>
           <grid row="3" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -209,6 +187,28 @@
           <font size="12" style="1"/>
           <foreground color="-2630944"/>
           <text value="Hybrid Dictionary Attack"/>
+        </properties>
+      </component>
+      <component id="7887c" class="javax.swing.JButton" binding="attackButton">
+        <constraints>
+          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-7667712"/>
+          <font size="14" style="1"/>
+          <foreground color="-14606047"/>
+          <text value="LAUNCH ATTACK!"/>
+        </properties>
+      </component>
+      <component id="a1905" class="javax.swing.JLabel" binding="responseLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-14605013"/>
+          <font size="12" style="1"/>
+          <foreground color="-2630944"/>
+          <text value="Please enter information to begin attack"/>
         </properties>
       </component>
     </children>

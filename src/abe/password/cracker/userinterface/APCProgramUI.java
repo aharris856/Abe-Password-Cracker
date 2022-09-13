@@ -79,29 +79,6 @@ public class APCProgramUI extends JFrame {
             return;
         }
 
-        HashSet<AttackType> attackTypes = new HashSet<>();
-
-        if (bruteForceAttackCheckBox.isSelected()) {
-            attackTypes.add(AttackType.BRUTE_FORCE);
-        }
-
-        if (commonPasswordsAttackCheckBox.isSelected()) {
-            attackTypes.add(AttackType.COMMON_PASSWORDS);
-        }
-
-        if (dictionaryAttackCheckBox.isSelected()) {
-            attackTypes.add(AttackType.DICTIONARY);
-        }
-
-        if(hybridDictionaryAttackCheckBox.isSelected()) {
-            attackTypes.add(AttackType.HYBRID_DICTIONARY);
-        }
-
-        if (attackTypes.size() == 0) {
-            setResponse("Error: Please select at least 1 attack method.");
-            return;
-        }
-
         APCInputInstructions apcInputInstructions = new APCInputInstructions();
         apcInputInstructions.setHashedPasswordsFile(hashedPasswordFile);
         apcInputInstructions.setDictionaryFile(dictionaryFile);
@@ -109,12 +86,31 @@ public class APCProgramUI extends JFrame {
         apcInputInstructions.setHashType(hashType);
         apcInputInstructions.setOutputType(OutputType.FILE);
 
-        for(AttackType attackType : attackTypes) {
-            apcInputInstructions.addAttackType(attackType);
+
+        if (commonPasswordsAttackCheckBox.isSelected()) {
+            attemptAttackUsingInput(apcInputInstructions, AttackType.COMMON_PASSWORDS, "Attempting "+hashType+" common passwords.");
         }
 
+        if (dictionaryAttackCheckBox.isSelected()) {
+            attemptAttackUsingInput(apcInputInstructions, AttackType.DICTIONARY, "Attempting "+hashType+" dictionary.");
+        }
+
+        if(hybridDictionaryAttackCheckBox.isSelected()) {
+            attemptAttackUsingInput(apcInputInstructions, AttackType.HYBRID_DICTIONARY, "Attempting "+hashType+" hybrid dictionary.");
+        }
+
+        if (bruteForceAttackCheckBox.isSelected()) {
+            attemptAttackUsingInput(apcInputInstructions, AttackType.BRUTE_FORCE, "Attempting "+hashType+" brute force.");
+        }
+
+        setResponse("Attack(s) Complete.");
+    }
+
+    private void attemptAttackUsingInput(APCInputInstructions apcInputInstructions, AttackType attackType, String message) {
+        apcInputInstructions.resetAttackTypes();
+        apcInputInstructions.addAttackType(attackType);
+        setResponse(message);
         controller.attemptAttack(apcInputInstructions);
-        setResponse("Attack Complete.");
     }
 
     private void setResponse(String message) {

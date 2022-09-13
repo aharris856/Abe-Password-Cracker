@@ -4,7 +4,8 @@ import abe.password.cracker.constants.ResponseType;
 import abe.password.cracker.response.ResponseFailed;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class ResponseFailedTest {
 

@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -23,6 +22,7 @@ public class HybridDictionaryAttack implements APCAttack {
     private char[] specialCharacters;
 
     public HybridDictionaryAttack() {
+
         specialCharacters = new char[42];
         char ch = '!';
         int index = 0;
@@ -42,7 +42,6 @@ public class HybridDictionaryAttack implements APCAttack {
         while(ch < 127) {
             specialCharacters[index++] = ch++;
         }
-
     }
 
     @Override
@@ -60,7 +59,6 @@ public class HybridDictionaryAttack implements APCAttack {
         HashSet<String> crackedPasswords = executeHybridDictionaryAttack(passwordsToCrack, dictionary, apcInputInstructions.getHashType());
 
         createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType());
-
     }
 
     private HashSet<String> executeHybridDictionaryAttack(HashSet<String> passwordsToCrack, Queue<String> dictionary, HashType hashType) {
@@ -88,22 +86,54 @@ public class HybridDictionaryAttack implements APCAttack {
     private HashSet<String> getPermutationsOfWord(String word) {
 
         HashSet<String> permutations = new HashSet<>();
+
         permutations.add(word);
-        char[] wordArr = word.toCharArray();
-
-        for(char specialChar : specialCharacters) {
-            for(int i = 0; i < wordArr.length; i++) {
-
-                char ch = wordArr[i];
-                wordArr[i] = specialChar;
-                permutations.add(new String(wordArr));
-                wordArr[i] = ch;
-            }
-        }
+        addReplacedChars(permutations, word);
+        addExtraChars(permutations, word);
 
         return permutations;
     }
 
+    private void addReplacedChars(HashSet<String> permutations, String word) {
+
+        char[] wordArr = word.toCharArray();
+
+        for(char specialChar : specialCharacters) {
+
+            for(int i = 0; i < wordArr.length; i++) {
+
+                char ch = wordArr[i];
+                wordArr[i] = specialChar;
+                permutations.add(new String( wordArr ));
+                wordArr[i] = ch;
+            }
+        }
+    }
+
+    private void addExtraChars(HashSet<String> permutations, String word) {
+
+        char[] wordArr = new char[word.length()+1];
+
+        for(char specialChar : specialCharacters) {
+
+            for(int specialCharIndex = 0; specialCharIndex < wordArr.length; specialCharIndex++) {
+
+                wordArr[specialCharIndex] = specialChar;
+
+                int wordIndex = 0;
+                for(int wordArrIndex = 0; wordArrIndex < wordArr.length; wordArrIndex++) {
+
+                    if(wordArrIndex == specialCharIndex) {
+                        continue;
+                    }
+
+                    wordArr[wordArrIndex] = word.charAt(wordIndex++);
+                }
+
+                permutations.add(new String( wordArr ));
+            }
+        }
+    }
     private Queue<String> readDictionaryFile(String dictionaryFile) {
 
         try {

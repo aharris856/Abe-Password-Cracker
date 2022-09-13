@@ -25,34 +25,6 @@ public class APCInputInstructions {
         this.outputType = OutputType.FILE;
     }
 
-    // for testing purposes --------------------------------------------------------
-    public boolean equals(APCInputInstructions apcII) {
-
-        return apcII.getHashedPasswordsFile().equals(this.hashedPasswordsFile) &&
-                apcII.getDictionaryFile().equals(this.dictionaryFile) &&
-                apcII.getCommonPasswordsFile().equals(this.commonPasswordsFile) &&
-                apcII.getHashType() == this.hashType &&
-                apcII.getOutputType() == this.outputType &&
-                compareAttackTypes(apcII);
-    }
-
-    private boolean compareAttackTypes(APCInputInstructions apcII) {
-
-        if (apcII.getAttackTypes().size() != attackTypes.size()) {
-            return false;
-        }
-
-        for(AttackType attackType : attackTypes) {
-            if(!apcII.getAttackTypes().contains(attackType)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    // end testing used methods --------------------------------------------------
-
 // HASHED PASSWORD FILE -------------------------------------------------------
     public void setHashedPasswordsFile(String hashedPasswordsFile) {
         this.hashedPasswordsFile = hashedPasswordsFile;
@@ -93,6 +65,10 @@ public class APCInputInstructions {
     public HashSet<AttackType> getAttackTypes() {
         return attackTypes;
     }
+
+    public void resetAttackTypes() {
+        attackTypes = new HashSet<>();
+    }
 // OUTPUT TYPE -----------------------------------------------------------
     public void setOutputType(OutputType outputType) {
         this.outputType = outputType;
@@ -101,18 +77,5 @@ public class APCInputInstructions {
     public OutputType getOutputType() {
         return outputType;
     }
-// -------------------------------------------------------------------------
-//    public String toString() {
-//        String hashTypeStr = hashType != null ? hashType.toString() : null;
-//        String attackTypeStr = attackTypes != null ? attackTypes.toString() : null;
-//        String outputTypeStr = outputType != null ? outputType.toString() : null;
-//        return "--- APC Input Instructions ---\n" +
-//                "Hashed Pass File : \"" + hashedPasswordsFile + "\"\n" +
-//                "Dictionary File : \"" + dictionaryFile + "\"\n" +
-//                "Common Pass File : \"" + commonPasswordsFile + "\"\n" +
-//                "Hash Type : \"" + hashTypeStr + "\"\n" +
-//                "Attack Types : \"" + attackTypeStr + "\"\n" +
-//                "Output Type : \"" + outputTypeStr + "\"\n" +
-//                "-------------------------------";
-//    }
+
 }

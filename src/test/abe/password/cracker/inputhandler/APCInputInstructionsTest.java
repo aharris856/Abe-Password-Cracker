@@ -13,80 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class APCInputInstructionsTest {
 
     @Test
-    void testEquals() {
-
-        String fail = "fail";
-
-        String hpf = "hpf";
-        String df = "df";
-        String cpf = "cpf";
-        HashType sha1 = HashType.SHA1;
-        HashType sha256 = HashType.SHA256;
-        OutputType sysout = OutputType.SYSOUT;
-        OutputType file = OutputType.FILE;
-        AttackType da = AttackType.DICTIONARY;
-        AttackType cpa = AttackType.COMMON_PASSWORDS;
-        AttackType bfa = AttackType.BRUTE_FORCE;
-
-        APCInputInstructions apcInputInstructions1 = new APCInputInstructions();
-        APCInputInstructions apcInputInstructions2 = new APCInputInstructions();
-
-        apcInputInstructions1.setHashedPasswordsFile(hpf);
-        apcInputInstructions1.setDictionaryFile(df);
-        apcInputInstructions1.setCommonPasswordsFile(cpf);
-        apcInputInstructions1.setHashType(sha1);
-        apcInputInstructions1.setOutputType(sysout);
-        apcInputInstructions1.addAttackType(da);
-        apcInputInstructions1.addAttackType(cpa);
-
-        apcInputInstructions2.setHashedPasswordsFile(hpf);
-        apcInputInstructions2.setDictionaryFile(df);
-        apcInputInstructions2.setCommonPasswordsFile(cpf);
-        apcInputInstructions2.setHashType(sha1);
-        apcInputInstructions2.setOutputType(sysout);
-        apcInputInstructions2.addAttackType(da);
-        apcInputInstructions2.addAttackType(cpa);
-
-        assertTrue(apcInputInstructions1.equals(apcInputInstructions2));
-
-        // ------------ does not equal cases -----------------------
-
-        //hashed pass file
-        apcInputInstructions2.setHashedPasswordsFile(hpf+fail);
-        assertFalse(apcInputInstructions1.equals(apcInputInstructions2));
-        apcInputInstructions2.setHashedPasswordsFile(hpf);
-        assertTrue(apcInputInstructions1.equals(apcInputInstructions2));
-
-        //dictionary file
-        apcInputInstructions2.setDictionaryFile(df+fail);
-        assertFalse(apcInputInstructions1.equals(apcInputInstructions2));
-        apcInputInstructions2.setDictionaryFile(df);
-        assertTrue(apcInputInstructions1.equals(apcInputInstructions2));
-
-        //common passwords file
-        apcInputInstructions2.setCommonPasswordsFile(cpf+fail);
-        assertFalse(apcInputInstructions1.equals(apcInputInstructions2));
-        apcInputInstructions2.setCommonPasswordsFile(cpf);
-        assertTrue(apcInputInstructions1.equals(apcInputInstructions2));
-
-        //hash type
-        apcInputInstructions2.setHashType(sha256);
-        assertFalse(apcInputInstructions1.equals(apcInputInstructions2));
-        apcInputInstructions2.setHashType(sha1);
-        assertTrue(apcInputInstructions1.equals(apcInputInstructions2));
-
-        //output type
-        apcInputInstructions2.setOutputType(file);
-        assertFalse(apcInputInstructions1.equals(apcInputInstructions2));
-        apcInputInstructions2.setOutputType(sysout);
-        assertTrue(apcInputInstructions1.equals(apcInputInstructions2));
-
-        //attack type
-        apcInputInstructions2.addAttackType(bfa);
-        assertFalse(apcInputInstructions1.equals(apcInputInstructions2));
-    }
-
-    @Test
     void getHashedPasswordsFile() {
 
         String hashedPassFile = "hpf";
@@ -172,6 +98,31 @@ class APCInputInstructionsTest {
         assertTrue( compareAttackTypes(expected, inputInstructions.getAttackTypes()) );
 
         inputInstructions.addAttackType(duplicate);
+
+        assertTrue( compareAttackTypes(expected, inputInstructions.getAttackTypes()) );
+    }
+
+    @Test
+    void clearAttackTypes() {
+
+        APCInputInstructions inputInstructions = new APCInputInstructions();
+        HashSet<AttackType> expected = new HashSet<>();
+
+        assertTrue( compareAttackTypes(expected, inputInstructions.getAttackTypes()) );
+
+        AttackType attackType1 = AttackType.DICTIONARY;
+        AttackType attackType2 = AttackType.BRUTE_FORCE;
+
+        expected.add(attackType1);
+        inputInstructions.addAttackType(attackType1);
+
+        expected.add(attackType2);
+        inputInstructions.addAttackType(attackType2);
+
+        assertTrue( compareAttackTypes(expected, inputInstructions.getAttackTypes()) );
+
+        expected = new HashSet<>();
+        inputInstructions.resetAttackTypes();
 
         assertTrue( compareAttackTypes(expected, inputInstructions.getAttackTypes()) );
     }
