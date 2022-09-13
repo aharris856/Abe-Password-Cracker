@@ -88,19 +88,19 @@ public class APCProgramUI extends JFrame {
 
 
         if (commonPasswordsAttackCheckBox.isSelected()) {
-            attemptAttackUsingInput(apcInputInstructions, AttackType.COMMON_PASSWORDS, "Attempting "+hashType+" common passwords.");
+            attemptAttackUsingInput(apcInputInstructions, AttackType.COMMON_PASSWORDS, "Attempting common passwords attack.");
         }
 
         if (dictionaryAttackCheckBox.isSelected()) {
-            attemptAttackUsingInput(apcInputInstructions, AttackType.DICTIONARY, "Attempting "+hashType+" dictionary.");
+            attemptAttackUsingInput(apcInputInstructions, AttackType.DICTIONARY, "Attempting dictionary attack.");
         }
 
         if(hybridDictionaryAttackCheckBox.isSelected()) {
-            attemptAttackUsingInput(apcInputInstructions, AttackType.HYBRID_DICTIONARY, "Attempting "+hashType+" hybrid dictionary.");
+            attemptAttackUsingInput(apcInputInstructions, AttackType.HYBRID_DICTIONARY, "Attempting hybrid dictionary attack.");
         }
 
         if (bruteForceAttackCheckBox.isSelected()) {
-            attemptAttackUsingInput(apcInputInstructions, AttackType.BRUTE_FORCE, "Attempting "+hashType+" brute force.");
+            attemptAttackUsingInput(apcInputInstructions, AttackType.BRUTE_FORCE, "Attempting brute force attack.");
         }
 
         setResponse("Attack(s) Complete.");
