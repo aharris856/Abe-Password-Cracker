@@ -1,5 +1,6 @@
 package abe.password.cracker.attack;
 
+import abe.password.cracker.apclogger.APCLogger;
 import abe.password.cracker.constants.HashType;
 import abe.password.cracker.constants.OutputType;
 import abe.password.cracker.hasher.APCHasher;
@@ -15,22 +16,23 @@ import java.util.HashSet;
 
 public class DictionaryAttack implements APCAttack {
 
+    private final APCLogger logger = new APCLogger(this.getClass().getSimpleName());
     private String responseFileName = "Dictionary_Attack_Response";
 
     public void attack(APCInputInstructions apcInputInstructions, HashSet<String> passwordsToCrack) {
 
-        System.out.println("Attempting dictionary attack.");
+        logger.info("Attempting dictionary attack.");
 
         HashSet<String> crackedPasswords = executeDictionaryAttack(passwordsToCrack, apcInputInstructions.getDictionaryFile(), apcInputInstructions.getHashType());
 
         if (crackedPasswords == null) {
-            System.out.println("Failed to attempt dictionary attack.");
+            logger.warn("Failed to attempt dictionary attack.");
             return;
         }
 
         createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType());
 
-        System.out.println("Dictionary attack complete.");
+        logger.info("Dictionary attack complete.");
     }
 
     private HashSet<String> executeDictionaryAttack(HashSet<String> passwordsToCrack, String dictionaryFileName, HashType hashType) {
@@ -87,11 +89,11 @@ public class DictionaryAttack implements APCAttack {
                 return;
 
             } catch (IOException e) {
-                System.out.println("Failed to write dictionary attack response to file. printing");
+                logger.error("Failed to write dictionary attack response to file. printing");
             }
         }
 
-        System.out.println(response);
+        logger.println(response.toString());
     }
 
     private void createAPCResponseFailed(String errorMessage, OutputType outputType) {
@@ -108,10 +110,10 @@ public class DictionaryAttack implements APCAttack {
                 return;
 
             } catch (IOException e) {
-                System.out.println("Failed to write dictionary attack response to file. printing");
+                logger.error("Failed to write dictionary attack response to file. printing");
             }
         }
 
-        System.out.println(response);
+        logger.println(response.toString());
     }
 }

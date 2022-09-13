@@ -15,8 +15,16 @@ public class APCLogger {
         log(message, "INFO");
     }
 
+    public void warn(String message) {
+        log(message, "WARN");
+    }
+
     public void error(String message) {
         log(message, "ERROR");
+    }
+
+    public void println(String message) {
+        System.out.println(message);
     }
 
     private void log(String message, String logType) {
