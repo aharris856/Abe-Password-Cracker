@@ -23,6 +23,28 @@ public class APCLogger {
         log(message, "ERROR");
     }
 
+    public void error(Exception e) {
+
+        StackTraceElement[] stackTrace = e.getStackTrace();
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(int i = 0; i < stackTrace.length; i++) {
+
+            if(i > 0) {
+                stringBuilder.append('\t');
+            }
+
+            stringBuilder.append(stackTrace[i].toString());
+
+            if(i < stackTrace.length - 1) {
+                stringBuilder.append('\n');
+            }
+        }
+
+        log(stringBuilder.toString(), "ERROR");
+    }
+
     public void println(String message) {
         System.out.println(message);
     }

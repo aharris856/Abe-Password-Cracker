@@ -41,7 +41,7 @@ public class APCHasher {
             logger.error("Error. Failed to determine hashing algorithm. : \"" + hashAlgorithm + "\" returning null.");
             return null;
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            logger.error(e);
             return null;
         }
     }

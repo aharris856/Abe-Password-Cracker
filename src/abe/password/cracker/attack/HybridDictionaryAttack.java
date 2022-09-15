@@ -155,7 +155,7 @@ public class HybridDictionaryAttack implements APCAttack {
             return dictionary;
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e);
             return null;
         }
     }

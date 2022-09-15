@@ -59,7 +59,7 @@ public class CommonPasswordsAttack implements APCAttack {
             return crackedPasswords;
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e);
             return null;
         }
     }
