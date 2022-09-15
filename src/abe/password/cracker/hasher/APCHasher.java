@@ -1,5 +1,6 @@
 package abe.password.cracker.hasher;
 
+import abe.password.cracker.apclogger.APCLogger;
 import abe.password.cracker.constants.HashType;
 
 import java.io.UnsupportedEncodingException;
@@ -7,6 +8,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class APCHasher {
+
+    private final APCLogger logger = new APCLogger(this.getClass().getSimpleName());
 
     public String getHash(String str, HashType hashType) {
 
@@ -35,7 +38,7 @@ public class APCHasher {
             return bytesToString(hashedByteArr);
 
         } catch (NoSuchAlgorithmException e) {
-            System.out.println("Error. Failed to determine hashing algorithm. : \"" + hashAlgorithm + "\" returning null.");
+            logger.error("Error. Failed to determine hashing algorithm. : \"" + hashAlgorithm + "\" returning null.");
             return null;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
