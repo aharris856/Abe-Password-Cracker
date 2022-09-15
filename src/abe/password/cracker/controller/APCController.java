@@ -1,15 +1,18 @@
 package abe.password.cracker.controller;
 
+import abe.password.cracker.apclogger.APCLogger;
 import abe.password.cracker.inputhandler.APCInputInstructions;
 import abe.password.cracker.inputhandler.UserInputHandler;
 import abe.password.cracker.logic.APCLogicHandler;
 
 public class APCController {
 
+    private final APCLogger logger = new APCLogger(this.getClass().getSimpleName());
+
     public void parseUserInputAndAttemptAttack(String userInput) {
 
         if (userInput == null) {
-            System.out.println("Please enter valid APC commands.");
+            logger.error("Please enter valid APC commands.");
             return;
         }
 
@@ -21,7 +24,7 @@ public class APCController {
     public void attemptAttack(APCInputInstructions apcInputInstructions) {
 
         if (apcInputInstructions == null) {
-            System.out.println("Null APCInputInstructions object.");
+            logger.error("Null APCInputInstructions object.");
             return;
         }
 

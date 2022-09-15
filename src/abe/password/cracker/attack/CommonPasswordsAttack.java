@@ -1,5 +1,6 @@
 package abe.password.cracker.attack;
 
+import abe.password.cracker.apclogger.APCLogger;
 import abe.password.cracker.constants.HashType;
 import abe.password.cracker.constants.OutputType;
 import abe.password.cracker.hasher.APCHasher;
@@ -15,22 +16,24 @@ import java.util.HashSet;
 
 public class CommonPasswordsAttack implements APCAttack {
 
+    private final APCLogger logger = new APCLogger(this.getClass().getSimpleName());
+
     private String responseFileName = "Common_Passwords_Attack_Response";
 
     public void attack(APCInputInstructions apcInputInstructions, HashSet<String> passwordsToCrack) {
 
-        System.out.println("Attempting common passwords attack.");
+        logger.info("Attempting common passwords attack.");
 
         HashSet<String> crackedPasswords = executeCommonPasswordsAttack(passwordsToCrack, apcInputInstructions.getCommonPasswordsFile(), apcInputInstructions.getHashType());
 
         if (crackedPasswords == null) {
-            System.out.println("Failed to attempt common passwords attack.");
+            logger.warn("Failed to attempt common passwords attack.");
             return;
         }
 
         createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType());
 
-        System.out.println("Common passwords attack complete.");
+        logger.info("Common passwords attack complete.");
     }
 
     private HashSet<String> executeCommonPasswordsAttack(HashSet<String> passwordsToCrack, String commonPasswordsFileName, HashType hashType) {
@@ -56,7 +59,7 @@ public class CommonPasswordsAttack implements APCAttack {
             return crackedPasswords;
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e);
             return null;
         }
     }
@@ -87,11 +90,11 @@ public class CommonPasswordsAttack implements APCAttack {
                 return;
 
             } catch (IOException e) {
-                System.out.println("Failed to write dictionary attack response to file. printing");
+                logger.error("Failed to write dictionary attack response to file. printing");
             }
         }
 
-        System.out.println(response);
+        logger.println(response.toString());
     }
 
     private void createAPCResponseFailed(String errorMessage, OutputType outputType) {
@@ -108,10 +111,10 @@ public class CommonPasswordsAttack implements APCAttack {
                 return;
 
             } catch (IOException e) {
-                System.out.println("Failed to write dictionary attack response to file. printing");
+                logger.error("Failed to write dictionary attack response to file. printing");
             }
         }
 
-        System.out.println(response);
+        logger.info(response.toString());
     }
 }

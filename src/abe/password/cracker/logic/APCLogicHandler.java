@@ -1,5 +1,6 @@
 package abe.password.cracker.logic;
 
+import abe.password.cracker.apclogger.APCLogger;
 import abe.password.cracker.attack.*;
 import abe.password.cracker.constants.AttackType;
 import abe.password.cracker.inputhandler.APCInputInstructions;
@@ -10,6 +11,8 @@ import java.io.IOException;
 import java.util.HashSet;
 
 public class APCLogicHandler {
+
+    private final APCLogger logger = new APCLogger(this.getClass().getSimpleName());
 
     public void executeAPCInputInstructions(APCInputInstructions inputInstructions) {
 
@@ -48,7 +51,7 @@ public class APCLogicHandler {
         String hashedPasswordFileStr = inputInstructions.getHashedPasswordsFile();
 
         if (hashedPasswordFileStr == null) {
-            System.out.println("Input hashed password file using the \"-hpf\" command. ");
+            logger.error("Input hashed password file using the \"-hpf\" command. ");
             return null;
         }
 
@@ -67,7 +70,7 @@ public class APCLogicHandler {
             return hashedPasswords;
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e);
             return null;
         }
 

@@ -1,5 +1,6 @@
 package abe.password.cracker.attack;
 
+import abe.password.cracker.apclogger.APCLogger;
 import abe.password.cracker.constants.HashType;
 import abe.password.cracker.constants.OutputType;
 import abe.password.cracker.hasher.APCHasher;
@@ -15,6 +16,8 @@ import java.util.List;
 
 public class BruteForceAttack implements APCAttack {
 
+    private final APCLogger logger = new APCLogger(this.getClass().getSimpleName());
+
     private String defaultResponseFileName = "Brute_Force_Attack_Response";
 
     private final char minChar = '!';
@@ -22,13 +25,13 @@ public class BruteForceAttack implements APCAttack {
 
     public void attack(APCInputInstructions apcInputInstructions, HashSet<String> passwordsToCrack) {
 
-        System.out.println("Attempting brute force attack");
+        logger.info("Attempting brute force attack");
 
         HashSet<String> crackedPasswords = executeBruteForceAttack(passwordsToCrack, apcInputInstructions.getHashType(), apcInputInstructions.getOutputType());
 
         createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType());
 
-        System.out.println("Brute force attack complete.");
+        logger.info("Brute force attack complete.");
     }
 
     private HashSet<String> executeBruteForceAttack(HashSet<String> passwordsToCrack, HashType hashType, OutputType outputType) {
@@ -38,7 +41,7 @@ public class BruteForceAttack implements APCAttack {
         int numberOfChars = 1;
         while(passwordsToCrack.size() > 0) {
 
-            System.out.println("Number of chars = "+numberOfChars);
+            logger.info("Number of chars = "+numberOfChars);
 
             HashSet<String> tmpCrackedPasswords = bruteForceAttackGivenNumberOfCharacters(passwordsToCrack, numberOfChars, hashType, outputType);
 
@@ -120,11 +123,11 @@ public class BruteForceAttack implements APCAttack {
                 return;
 
             } catch (IOException e) {
-                System.out.println("Failed to write dictionary attack response to file. printing");
+                logger.error("Failed to write dictionary attack response to file. printing");
             }
         }
 
-        System.out.println(response);
+        logger.println(response.toString());
     }
 
     private void createAPCResponseFailed(String fileName, String errorMessage, OutputType outputType) {
@@ -141,11 +144,11 @@ public class BruteForceAttack implements APCAttack {
                 return;
 
             } catch (IOException e) {
-                System.out.println("Failed to write dictionary attack response to file. printing");
+                logger.error("Failed to write dictionary attack response to file. printing");
             }
         }
 
-        System.out.println(response);
+        logger.println(response.toString());
     }
 }
 

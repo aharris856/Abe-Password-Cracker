@@ -1,5 +1,6 @@
 package abe.password.cracker.attack;
 
+import abe.password.cracker.apclogger.APCLogger;
 import abe.password.cracker.constants.HashType;
 import abe.password.cracker.constants.OutputType;
 import abe.password.cracker.hasher.APCHasher;
@@ -16,6 +17,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class HybridDictionaryAttack implements APCAttack {
+
+    private final APCLogger logger = new APCLogger(this.getClass().getSimpleName());
 
     private String responseFileName = "Hybrid_Dictionary_Attack_Response";
 
@@ -47,7 +50,7 @@ public class HybridDictionaryAttack implements APCAttack {
     @Override
     public void attack(APCInputInstructions apcInputInstructions, HashSet<String> passwordsToCrack) {
 
-        System.out.println("Attempting hybrid dictionary attack.");
+        logger.info("Attempting hybrid dictionary attack.");
 
         Queue<String> dictionary = readDictionaryFile(apcInputInstructions.getDictionaryFile());
 
@@ -59,6 +62,8 @@ public class HybridDictionaryAttack implements APCAttack {
         HashSet<String> crackedPasswords = executeHybridDictionaryAttack(passwordsToCrack, dictionary, apcInputInstructions.getHashType());
 
         createAPCResponse(crackedPasswords, apcInputInstructions.getOutputType());
+
+        logger.info("Hybrid dictionary attack complete.");
     }
 
     private HashSet<String> executeHybridDictionaryAttack(HashSet<String> passwordsToCrack, Queue<String> dictionary, HashType hashType) {
@@ -150,7 +155,7 @@ public class HybridDictionaryAttack implements APCAttack {
             return dictionary;
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e);
             return null;
         }
     }
@@ -181,11 +186,11 @@ public class HybridDictionaryAttack implements APCAttack {
                 return;
 
             } catch (IOException e) {
-                System.out.println("Failed to write dictionary attack response to file. printing");
+                logger.error("Failed to write dictionary attack response to file. printing");
             }
         }
 
-        System.out.println(response);
+        logger.println(response.toString());
     }
 
     private void createAPCResponseFailed(String errorMessage, OutputType outputType) {
@@ -202,10 +207,10 @@ public class HybridDictionaryAttack implements APCAttack {
                 return;
 
             } catch (IOException e) {
-                System.out.println("Failed to write dictionary attack response to file. printing");
+                logger.error("Failed to write dictionary attack response to file. printing");
             }
         }
 
-        System.out.println(response);
+        logger.println(response.toString());
     }
 }
