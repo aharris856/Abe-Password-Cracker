@@ -3,7 +3,7 @@
 
         There are 2 ways to run the application.
 
-        1. Tia the user interface. To do so run the program with no arguments
+        1. Via the user interface. To do so run the program with no arguments
 
         2. The command line directly, in which case you can use the following arguments
             -hpf PATH_TO_FILE_CONTAINING HASHED PASSWORDS
